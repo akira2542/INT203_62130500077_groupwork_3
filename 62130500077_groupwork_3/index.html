@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Vue Js - HelloWorld App</title>
+
+  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+  <!-- Using via Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- https://tailwindcss.com/docs/installation -->
+  <!-- Using Tailwind via CDN -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<style>
+  .gallery {
+    background-size: cover;
+  }
+  .gallery.item-1 {
+    background-image: url(images/1.jpg);
+  }
+  .gallery.item-2 {
+    background-image: url(images/2.jpg);
+  }
+  .gallery.item-3 {
+    background-image: url(images/3.jpg);
+  }
+</style>
+<body>
+  <div id="app" class="flex justify-center">
+    <div id="gallery" class="flex flex-col">
+      <h1 class="m-4 font-bold text-xl">Gallery Items ( {{ countGallery }} ) Liked ( {{ countLike }}  )</h1>
+      <div v-for="(pic,index) in pics" class="flex flex-col">
+        <div v-on:click="()=>{toggleLike(index)}" id="gallery-item" class="overflow-hidden cursor-pointer m-3 flex flex-col bg-gray-200 hover:bg-gray-400 rounded-xl transition-colors">
+          <div class="gallery w-72 h-72" :style="pic.style"></div>
+          <h2 class="m-3 font-semibold"> {{ pic.title }}
+            <span :class="{'text-red-500': pic.like}" class="text-gray-300 transition-all text-sm material-icons transform scale-150">favorite</span>
+          </h2>  
+        </div>
+      </div>
+    </div>
+  </div> 
+  <!-- my main.js -->
+  <script src="./main.js"></script>
+</body>
+
+</html>
+
+      <!-- <div v-on:click="()=>{toggleLike(1)}" id="gallery-item" class="overflow-hidden cursor-pointer m-3 flex flex-col bg-gray-200 hover:bg-gray-400 rounded-xl transition-colors">
+        <div class="gallery item-2 w-64 h-64"></div>
+        <h2 class="m-2 mb-3 font-semibold"> {{ this.pics[1].title}}
+          <span v-show="this.pics[1].like" class="text-sm text-red-500 material-icons transform scale-150">favorite</span>
+        </h2>  
+      </div>
+      <div v-on:click="()=>{toggleLike(2)}" id="gallery-item" class="overflow-hidden cursor-pointer m-3 flex flex-col bg-gray-200 hover:bg-gray-400 rounded-xl transition-colors">
+        <div class="gallery item-3 w-64 h-64"></div>
+        <h2 class="m-2 mb-3 font-semibold"> {{ this.pics[2].title}}
+          <span v-show="this.pics[2].like" class=" text-sm text-red-500 material-icons transform scale-150">favorite</span>
+        </h2>  
+      </div> -->
